@@ -1,0 +1,1021 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Low BP Care Summary </title>
+
+<style>
+:root{
+  --blue:#1c3f8f;
+  --blue-dark:#142c63;
+  --ink:#171717;
+  --soft:#444;
+  --line:#222;
+  --border:#cfcfcf;
+  --paper:#fff;
+}
+
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
+
+body{
+  background:#e8e8e8;
+  color:var(--ink);
+  font-family:Georgia,"Times New Roman",serif;
+  padding:34px 15px;
+}
+
+.demo-tag{
+  max-width:900px;
+  margin:0 auto 8px;
+  text-align:center;
+  font-family:Arial,Helvetica,sans-serif;
+  font-size:10px;
+  font-weight:700;
+  letter-spacing:1px;
+  color:#9b4d37;
+}
+
+.page{
+  width:100%;
+  max-width:900px;
+  min-height:1130px;
+  margin:0 auto 35px;
+  padding:34px 50px 28px;
+  background:var(--paper);
+  border:1px solid #d4d4d4;
+  box-shadow:0 6px 22px rgba(0,0,0,.09);
+  display:flex;
+  flex-direction:column;
+  page-break-after:always;
+}
+
+.page:last-child{
+  page-break-after:auto;
+}
+
+/* HEADER */
+
+.header{
+  text-align:center;
+  position:relative;
+  padding-bottom:7px;
+}
+
+.logo{
+  width:310px;
+  max-height:82px;
+  object-fit:contain;
+}
+
+.address{
+  margin-top:8px;
+  text-align:center;
+  color:var(--blue-dark);
+  font-size:13px;
+  line-height:1.55;
+}
+
+.header-rule{
+  border:0;
+  border-top:1.5px solid var(--blue);
+  margin-top:10px;
+}
+
+/* TITLE */
+
+.title{
+  text-align:center;
+  font-size:19px;
+  font-weight:700;
+  text-decoration:underline;
+  letter-spacing:.5px;
+  margin:24px 0 20px;
+}
+
+/* PATIENT INFO */
+
+.info-box{
+  border:1px solid var(--line);
+  margin-bottom:20px;
+  padding:9px 14px;
+}
+
+.info-row{
+  display:flex;
+  min-height:29px;
+  align-items:center;
+}
+
+.info-row + .info-row{
+  border-top:1px solid #d1d1d1;
+}
+
+.info-col{
+  width:50%;
+  display:flex;
+  font-size:13.5px;
+}
+
+.label{
+  width:125px;
+  flex-shrink:0;
+  font-weight:700;
+}
+
+.value{
+  font-weight:400;
+}
+
+/* SECTIONS */
+
+.section{
+  font-size:13.5px;
+  line-height:1.63;
+  margin-bottom:12px;
+  text-align:justify;
+}
+
+.section b{
+  font-weight:700;
+}
+
+.section-heading{
+  font-size:13.5px;
+  line-height:1.6;
+  font-weight:700;
+  margin:8px 0 4px;
+}
+
+.subline{
+  font-size:13.5px;
+  line-height:1.63;
+  margin-bottom:8px;
+}
+
+.advice-line{
+  font-size:13.5px;
+  line-height:1.63;
+  margin-left:15px;
+  margin-bottom:4px;
+}
+
+/* SMALL TABLE ONLY WHERE A HOSPITAL REPORT BENEFITS FROM IT */
+
+.observation-table{
+  width:100%;
+  border-collapse:collapse;
+  margin:6px 0 14px;
+  font-family:Arial,Helvetica,sans-serif;
+  font-size:11px;
+}
+
+.observation-table th{
+  background:#f3f5f8;
+  border:1px solid #aaa;
+  padding:7px 8px;
+  text-align:left;
+}
+
+.observation-table td{
+  border:1px solid #c9c9c9;
+  padding:7px 8px;
+  vertical-align:top;
+}
+
+
+/* CARE TEAM TABLE */
+
+.care-team-table{
+  width:100%;
+  border-collapse:collapse;
+  margin:5px 0 16px;
+  font-size:12.5px;
+}
+
+.care-team-table td{
+  border:1px solid #999;
+  padding:8px 9px;
+  vertical-align:middle;
+}
+
+.care-team-table .care-label{
+  width:16%;
+  background:#f4f4f4;
+  font-weight:700;
+  white-space:nowrap;
+}
+
+.care-team-table td:nth-child(2){
+  width:34%;
+}
+
+.care-team-table td:nth-child(4){
+  width:34%;
+}
+
+
+/* PAGE 2 COST */
+
+.cost-title{
+  margin-top:5px;
+}
+
+.cost-table{
+  width:100%;
+  border-collapse:collapse;
+  font-family:Arial,Helvetica,sans-serif;
+  font-size:11.5px;
+  margin-top:7px;
+}
+
+.cost-table th{
+  background:var(--blue);
+  color:white;
+  border:1px solid var(--blue);
+  padding:8px;
+  text-align:left;
+}
+
+.cost-table td{
+  border:1px solid #c8c8c8;
+  padding:8px;
+}
+
+.cost-table td:last-child,
+.cost-table th:last-child{
+  text-align:right;
+}
+
+.total{
+  font-weight:800;
+  background:#f1f4f8;
+}
+
+/* DEMO SEAL */
+
+/* ===================== CLEAN RECTANGULAR SEAL ===================== */
+
+.seal-area{
+  margin-top:35px;
+  margin-left:400px;
+  text-align:center;
+}
+
+.demo-seal{
+  width:210px;
+  height:82px;
+
+  border:3px double var(--blue);
+  border-radius:3px;
+
+  color:var(--blue);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+
+  margin:0 auto;
+
+  transform:rotate(-9deg);
+  position:relative;
+
+  font-family:Arial, Helvetica, sans-serif;
+  font-size:7.5px;
+  font-weight:800;
+  line-height:1.25;
+  letter-spacing:0.7px;
+
+  background:#fff;
+
+  padding:10px;
+  box-sizing:border-box;
+}
+
+.demo-seal:before{
+  content:"";
+
+  position:absolute;
+
+  width:178px;
+  height:62px;
+
+  border:1px solid var(--blue);
+  border-radius:2px;
+
+  box-sizing:border-box;
+}
+/* FOOTER */
+
+.footer{
+  margin-top:auto;
+  padding-top:19px;
+  border-top:1px solid #ccc;
+  text-align:center;
+  font-family:Arial,Helvetica,sans-serif;
+  color:#777;
+  font-size:8.5px;
+  line-height:1.55;
+}
+
+/* PRINT */
+
+@media print{
+  .demo-seal{
+    -webkit-print-color-adjust:exact;
+    print-color-adjust:exact;
+  }
+
+  @page{
+    size:A4;
+    margin:0;
+  }
+
+  body{
+    padding:0;
+    background:#fff;
+  }
+
+  .demo-tag{
+    display:none;
+  }
+
+  .page{
+    width:210mm;
+    max-width:none;
+    height:297mm;
+    min-height:297mm;
+    margin:0;
+    border:0;
+    box-shadow:none;
+    overflow:hidden;
+  }
+
+  .cost-table,
+  .observation-table{
+    page-break-inside:avoid;
+  }
+}
+
+/* MOBILE */
+
+@media(max-width:650px){
+  body{
+    padding:0;
+  }
+
+  .page{
+    padding:24px 20px;
+    min-height:auto;
+  }
+
+  .logo{
+    width:260px;
+  }
+
+  .info-row{
+    display:block;
+    padding:5px 0;
+  }
+
+  .info-col{
+    width:100%;
+    margin:2px 0;
+  }
+
+  .label{
+    width:120px;
+  }
+}
+
+/* =========================================================
+   SEPARATE RECEIPT PAGE
+========================================================= */
+
+.receipt-page{
+  font-family:Georgia,"Times New Roman",serif;
+}
+
+.receipt-table{
+  width:100%;
+  border-collapse:collapse;
+  margin-top:7px;
+  font-family:Arial,Helvetica,sans-serif;
+  font-size:12px;
+}
+
+.receipt-table th{
+  background:#f1f3f6;
+  color:#222;
+  border:1px solid #888;
+  padding:9px 8px;
+  text-align:left;
+  font-weight:700;
+}
+
+.receipt-table td{
+  border:1px solid #aaa;
+  padding:9px 8px;
+}
+
+.receipt-table td:first-child{
+  width:9%;
+  text-align:center;
+}
+
+.receipt-table td:last-child,
+.receipt-table th:last-child{
+  width:22%;
+  text-align:right;
+}
+
+.receipt-total{
+  font-weight:800;
+  background:#f1f4f8;
+}
+
+.receipt-note{
+  margin-top:14px;
+  padding:9px 11px;
+  border:1px solid #c7c7c7;
+  font-family:Arial,Helvetica,sans-serif;
+  font-size:9.5px;
+  line-height:1.5;
+  color:#765715;
+}
+
+.receipt-summary{
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-start;
+  gap:25px;
+  margin-top:24px;
+  font-family:Arial,Helvetica,sans-serif;
+  font-size:11px;
+  line-height:1.6;
+}
+
+.amount-box{
+  min-width:190px;
+  border:1px solid #777;
+  padding:10px 14px;
+  text-align:right;
+}
+
+.amount-box span{
+  display:block;
+  font-size:9px;
+  text-transform:uppercase;
+  color:#666;
+  letter-spacing:.7px;
+}
+
+.amount-box strong{
+  display:block;
+  margin-top:4px;
+  font-size:18px;
+  color:#142c63;
+}
+
+@media print{
+  .receipt-page{
+    page-break-before:always;
+    page-break-after:auto;
+  }
+}
+
+@media(max-width:650px){
+  .receipt-summary{
+    display:block;
+  }
+
+  .amount-box{
+    margin-top:15px;
+  }
+}
+
+
+/* FIRST PAGE — fuller traditional report composition */
+.page:first-of-type .section{
+  font-size:14px;
+  line-height:1.75;
+  margin-bottom:18px;
+}
+
+.page:first-of-type .info-box{
+  margin-bottom:26px;
+}
+
+.page:first-of-type .title{
+  margin-bottom:24px;
+}
+
+@media print{
+  .page:first-of-type .section{
+    font-size:13.5px;
+    line-height:1.72;
+    margin-bottom:16px;
+  }
+}
+
+
+/* Fuller first-page composition */
+.page:first-of-type .section{
+  max-width:100%;
+}
+
+.page:first-of-type .section + .section{
+  margin-top:4px;
+}
+
+.page:first-of-type .footer{
+  margin-top:30px;
+}
+
+@media print{
+  .page:first-of-type .footer{
+    margin-top:24px;
+  }
+}
+
+
+/* CLINICAL RECORD SUMMARY TABLE */
+.clinical-summary{
+  margin-top:28px;
+  font-family:Arial,Helvetica,sans-serif;
+}
+
+.clinical-summary-title{
+  font-size:13px;
+  font-weight:700;
+  letter-spacing:.3px;
+  margin-bottom:7px;
+}
+
+.clinical-summary-table{
+  width:100%;
+  border-collapse:collapse;
+  table-layout:fixed;
+  font-size:11.5px;
+}
+
+.clinical-summary-table th,
+.clinical-summary-table td{
+  border:1px solid #999;
+  padding:8px 9px;
+  vertical-align:middle;
+}
+
+.clinical-summary-table th{
+  width:17%;
+  background:#f3f5f8;
+  font-weight:700;
+  text-align:left;
+}
+
+.clinical-summary-table td{
+  width:33%;
+  background:#fff;
+}
+
+@media print{
+  .clinical-summary{
+    page-break-inside:avoid;
+  }
+}
+
+</style>
+</head>
+
+<body>
+
+
+
+<!-- =========================================================
+     PAGE 1 — LOW BP CARE SUMMARY
+========================================================= -->
+
+<div class="page">
+
+  <div class="header">
+
+    <img
+      class="logo"
+      src="trustwellimage.png"
+      alt="Trustwell Hospitals"
+    >
+
+    <div class="address">
+      #5, JC Road, Vinobha Nagar, Sudhama Nagar, Bengaluru, Karnataka 560002<br>
+      General Appointments: 080 4566 6777 &nbsp; | &nbsp;
+      Emergency: +91 80955 99998<br>
+      Website: trustwellhospitals.com
+    </div>
+
+    <hr class="header-rule">
+
+  </div>
+
+
+  <div class="title">
+    LOW BP CARE &amp; DISCHARGE SUMMARY
+  </div>
+
+
+  <!-- PATIENT DETAILS -->
+
+  <div class="info-box">
+
+    <div class="info-row">
+
+      <div class="info-col">
+        <span class="label">Name:</span>
+        <span class="value">Harbajan BP</span>
+      </div>
+
+      <div class="info-col">
+        <span class="label">Condition:</span>
+        <span class="value">Low BP / Hypotension</span>
+      </div>
+
+    </div>
+
+
+    <div class="info-row">
+
+      <div class="info-col">
+        <span class="label">Start Date:</span>
+        <span class="value">20 June 2026</span>
+      </div>
+
+      <div class="info-col">
+        <span class="label">Duration:</span>
+        <span class="value">2 Days</span>
+      </div>
+
+    </div>
+
+
+    <div class="info-row">
+
+      <div class="info-col">
+        <span class="label">Department:</span>
+        <span class="value">Internal Medicine</span>
+      </div>
+
+      <div class="info-col">
+        <span class="label">Status:</span>
+        <span class="value">Stable at discharge assessment</span>
+      </div>
+
+    </div>
+
+  </div>
+
+
+
+  <div class="section">
+    <b>REASON FOR VISIT:</b>
+    Evaluation and observation for low blood pressure symptoms.
+  </div>
+
+  <div class="section">
+    <b>OBSERVATION PERIOD:</b>
+    20 June 2026 to 22 June 2026.
+  </div>
+
+  <div class="section">
+    <b>CLINICAL DEPARTMENT:</b>
+    Internal Medicine.
+  </div>
+
+  <div class="section">
+    <b>STATUS:</b>
+    Stable at discharge assessment.
+  </div>
+
+  <div class="section" style="margin-top:18px">
+    <b>CLINICAL NOTE:</b>
+    Low blood pressure was observed during the stated care period.
+    Supportive observation and follow-up guidance were provided.
+  </div>
+
+  <div class="section" style="margin-top:22px">
+    <b>CARE SUMMARY:</b>
+    The patient was observed during the two-day care period with focus
+    on low blood pressure symptoms, clinical stability and supportive care.
+    Follow-up and low-BP precautions were advised at discharge.
+  </div>
+
+  <div class="section" style="margin-top:22px">
+    <b>FOLLOW-UP:</b>
+    Follow-up with the treating clinician is advised as clinically indicated.
+  </div>
+
+  <div class="section" style="margin-top:24px">
+    <b>OBSERVATION SUMMARY:</b>
+    The two-day observation period focused on monitoring low blood
+    pressure symptoms, general clinical stability, hydration status,
+    rest and supportive care.
+  </div>
+
+  <div class="section" style="margin-top:24px">
+    <b>CARE OBJECTIVES:</b>
+    Continued clinical observation, appropriate hydration and rest,
+    awareness of low-BP symptoms, and timely follow-up were emphasized.
+  </div>
+
+  <div class="section" style="margin-top:24px">
+    <b>DISCHARGE STATUS:</b>
+    Clinically stable at discharge assessment, with low-BP precautions
+    and follow-up guidance provided.
+  </div>
+
+  <div class="clinical-summary">
+    <div class="clinical-summary-title">CLINICAL RECORD SUMMARY</div>
+    <table class="clinical-summary-table">
+      <tr>
+        <th>Patient</th>
+        <td>Harbajan BP</td>
+        <th>Condition</th>
+        <td>Low BP / Hypotension</td>
+      </tr>
+      <tr>
+        <th>Department</th>
+        <td>Internal Medicine</td>
+        <th>Observation</th>
+        <td>2 Days</td>
+      </tr>
+      <tr>
+        <th>Start Date</th>
+        <td>20 June 2026</td>
+        <th>Status</th>
+        <td>Stable at discharge assessment</td>
+      </tr>
+    </table>
+  </div>
+
+  <div style="
+    margin-top:26px;
+    font-size:12px;
+    line-height:1.7;
+    color:#444;
+  ">
+    <b></b>
+    
+  </div>
+
+
+
+</div>
+
+
+
+<!-- =========================================================
+     PAGE 2 — DISCHARGE & COST
+========================================================= -->
+
+<div class="page">
+
+  <div class="header">
+
+    <img
+      class="logo"
+      src="trustwellimage.png"
+      alt="Trustwell Hospitals"
+    >
+
+    <div class="address">
+      #5, JC Road, Vinobha Nagar, Sudhama Nagar, Bengaluru, Karnataka 560002<br>
+      General Appointments: 080 4566 6777 &nbsp; | &nbsp;
+      Emergency: +91 80955 99998<br>
+      Website: trustwellhospitals.com
+    </div>
+
+    <hr class="header-rule">
+
+  </div>
+
+
+  <div class="title">
+    DISCHARGE ADVICE &amp; CARE DETAILS
+  </div>
+
+
+  <!-- ADVICE -->
+
+  <div class="section">
+    <b>ADVICE ON DISCHARGE:</b>
+  </div>
+
+
+  <div class="advice-line">
+    - Maintain adequate fluid intake unless a doctor has advised
+    fluid restriction.
+  </div>
+
+  <div class="advice-line">
+    - Get up slowly from a lying or sitting position.
+  </div>
+
+  <div class="advice-line">
+    - If dizziness occurs, sit or lie down safely until symptoms improve.
+  </div>
+
+  <div class="advice-line">
+    - Avoid prolonged standing when feeling light-headed.
+  </div>
+
+  <div class="advice-line">
+    - Prefer regular balanced meals and avoid skipping meals.
+  </div>
+
+  <div class="advice-line">
+    - Monitor blood pressure as advised by the treating clinician.
+  </div>
+
+  <div class="advice-line">
+    - Do not stop or change prescribed medicines without consulting
+    the treating doctor.
+  </div>
+
+  <div class="advice-line">
+    - Attend the recommended follow-up appointment.
+  </div>
+
+  <div class="advice-line">
+    - Seek urgent medical attention if there is fainting, severe or
+    worsening dizziness, confusion, chest pain, breathing difficulty,
+    marked weakness or other concerning symptoms.
+  </div>
+
+
+  <!-- CARE TEAM -->
+
+  <div class="footer">
+
+    #5, JC Road, Vinobha Nagar, Sudhama Nagar,
+    Bengaluru, Karnataka 560002<br>
+
+    General Appointments: 080 4566 6777
+    &nbsp; | &nbsp;
+    Emergency: +91 80955 99998<br>
+
+    trustwellhospitals.com
+
+  </div>
+
+</div>
+
+
+<!-- =========================================================
+     PAGE 3 — SAMPLE RECEIPT / BILLING SUMMARY
+========================================================= -->
+
+<div class="page receipt-page">
+
+  <div class="header">
+    <img
+      class="logo"
+      src="trustwellimage.png"
+      alt="Trustwell Hospitals"
+    >
+
+    <div class="address">
+      #5, JC Road, Vinobha Nagar, Sudhama Nagar, Bengaluru, Karnataka 560002<br>
+      General Appointments: 080 4566 6777 &nbsp; | &nbsp;
+      Emergency: +91 80955 99998<br>
+      Website: trustwellhospitals.com
+    </div>
+
+    <hr class="header-rule">
+  </div>
+
+  <div class="title">
+    RECEIPT / BILLING SUMMARY
+  </div>
+
+  <div class="info-box">
+
+    <div class="info-row">
+      <div class="info-col">
+        <span class="label">Patient Name:</span>
+        <span class="value">Harbajan BP</span>
+      </div>
+
+      <div class="info-col">
+        <span class="label">Condition:</span>
+        <span class="value">Low BP / Hypotension</span>
+      </div>
+    </div>
+
+    <div class="info-row">
+      <div class="info-col">
+        <span class="label">Service Period:</span>
+        <span class="value">20 June 2026 – 22 June 2026</span>
+      </div>
+
+      <div class="info-col">
+        <span class="label">Duration:</span>
+        <span class="value">2 Days</span>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="section">
+    <b>BILLING DETAILS:</b>
+  </div>
+
+  <table class="receipt-table">
+    <tr>
+      <th>S.No.</th>
+      <th>Description</th>
+      <th>Amount</th>
+    </tr>
+
+    <tr>
+      <td>1</td>
+      <td>Consultation &amp; Medical Assessment</td>
+      <td>₹1,500.00</td>
+    </tr>
+
+    <tr>
+      <td>2</td>
+      <td>Observation / Bed Charges</td>
+      <td>₹4,000.00</td>
+    </tr>
+
+    <tr>
+      <td>3</td>
+      <td>Nursing &amp; Monitoring</td>
+      <td>₹2,000.00</td>
+    </tr>
+
+    <tr>
+      <td>4</td>
+      <td>Laboratory Investigations</td>
+      <td>₹2,000.00</td>
+    </tr>
+
+    <tr>
+      <td>5</td>
+      <td>IV Fluids / Supportive Care</td>
+      <td>₹1,500.00</td>
+    </tr>
+
+    <tr>
+      <td>6</td>
+      <td>Pharmacy / Consumables</td>
+      <td>₹1,000.00</td>
+    </tr>
+
+    <tr>
+      <td>7</td>
+      <td>Other Hospital Services</td>
+      <td>₹1,000.00</td>
+    </tr>
+
+    <tr class="receipt-total">
+      <td colspan="2"> TOTAL</td>
+      <td>₹13,000.00</td>
+    </tr>
+  </table>
+
+  
+
+  <div class="receipt-summary">
+
+    <div>
+      <b>Amount in Words:</b><br>
+      Rupees Thirteen Thousand Only
+    </div>
+
+   
+
+  </div>
+
+  <div class="seal-area">
+    <div class="demo-seal">
+      TRUSTWELL<br>
+      HOSPITALS<br>
+      Your Trust. Our Care.#5, JC Road, Vinobha Nagar, Sudhama Nagar, Bengaluru, Karnataka 560002
+General Appointments: 080 4566 6777   |   Emergency: +91 80955 99998
+    </div>
+  </div>
+
+  <div class="footer">
+    TRUSTWELL HOSPITALS <br>
+    #5, JC Road, Vinobha Nagar, Sudhama Nagar, Bengaluru, Karnataka 560002<br>
+    General Appointments: 080 4566 6777 &nbsp; | &nbsp;
+    Emergency: +91 80955 99998
+  </div>
+
+</div>
+
+</body>
+</html>
